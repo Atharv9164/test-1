@@ -12,17 +12,18 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6   # Updated to v6 (supports Node 24)
 
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
         with:
           command: buildozer -v android debug
-          buildozer_version: master
+          buildozer_version: master     # Use latest Buildozer
           workdir: .
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: GalaxyV3-APK
+          path: bin/*.apk
           path: bin/*.apk
